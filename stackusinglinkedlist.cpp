@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Node class representing a single node in the linked list
 class Node {
 public:
 	int data;
@@ -12,32 +13,36 @@ public:
 	}
 };
 
+// Stack class
 class Stack {
 private:
-	Node* top;
+	Node* top; // Pointer to the top node of the stack
 
 public:
 	Stack() {
-		top = NULL;
+		top = NULL; // Initialize the stack with a null top pointer
 	}
 
+	// Push operation: Insert an element onto the top of the stack
 	int push(int value) {
-		Node* newNode = new Node();
-		newNode->data = value;
-		newNode->next = top;
-		top = newNode;
+		Node* newNode = new Node(); // 1. Allocate memory for the new node
+		newNode->data = value; // 2. assign value
+		newNode->next = top; // 3. Set the next pointer of the new node to the current top node
+		top = newNode; // 4. Update the top pointer to the new node
 		cout << "Push value: " << value << endl;
 		return value;
 	}
 
+	// Pop operation: Remove the top most element from the stack
 	void pop() {
 		if (isEmpty()) {
 			cout << "Stack is empty." << endl;
 		}
 		cout << "Popped value: " << top->data << endl;
-		top = top->next;
+		top = top->next; // Update the top pointer to the next node
 	}
 
+	// Peek/Top operation: Retrieve the value of the topmost element without removing it
 	void peek() {
 		if (top == NULL) {
 			cout << "List is empty." << endl;
@@ -49,11 +54,12 @@ public:
 				current = current->next;
 			}
 			cout << endl;
-		}
+		} // Return the value of the top node
 	}
 
+	// IsEmpty operation: Check if the stack is empty
 	bool isEmpty() {
-		return top == NULL;
+		return top == NULL; // Return true if the top pointer is NULL, indicating an empty stack
 	}
 };
 
@@ -75,11 +81,11 @@ int main() {
 		case 1:
 			cout << "Enter the value to push: ";
 			cin >> value;
-			stack.push(value);
+			stack.push(value); // Push the entered value onto the stack
 			break;
 		case 2:
 			if (!stack.isEmpty()) {
-				stack.pop();
+				stack.pop(); // Pop the top element from the stack
 			}
 			else {
 				cout << "Stack is empty. No top value." << endl;
@@ -87,7 +93,7 @@ int main() {
 			break;
 		case 3:
 			if (!stack.isEmpty()) {
-				stack.peek();
+				stack.peek(); // Get the value of the top element
 			}
 			else {
 				cout << "Stack is empty. No top value." << endl;
@@ -104,5 +110,6 @@ int main() {
 
 		cout << endl;
 	}
+
 	return 0;
 }
